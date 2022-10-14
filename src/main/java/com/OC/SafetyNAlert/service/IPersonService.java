@@ -2,19 +2,19 @@ package com.OC.SafetyNAlert.service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.OC.SafetyNAlert.Shared.Result;
 import com.OC.SafetyNAlert.model.Person;
-
+@Service
 public interface IPersonService {
 	
-	public List<Person> getPersonList();
+	 List<Person> getPersons();
 	
-	public Iterable<Person> getPersons();
-	
-	public Person addPerson(Person person);
+	 Person savePerson(Person person);
 		
-	public Result updatePerson(Person person, String firstName, String lastName);
+	 Result updatePerson(Person person, String firstName, String lastName);
 
-	public Result deletePerson(String firstName, String lastName); 	
+	 Result deletePerson(String firstName, String lastName); 	
 
 }
