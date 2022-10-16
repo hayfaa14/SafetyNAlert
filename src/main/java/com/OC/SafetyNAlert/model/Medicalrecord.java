@@ -27,30 +27,24 @@ public class Medicalrecord {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(name="firstName")
 	private String firstName;
-	@Column(name="lastName")
 	private String lastName;
-    @JsonProperty("birthdate")
-    @JsonFormat(pattern="dd/MM/yyyy")
-	private Date birthdate;
-	
-    @ElementCollection
-    @CollectionTable(name="medications")
-    @Column(name="medications")
-	private List<String> medications;
-	
-    @ElementCollection
-    @CollectionTable(name="allergies")
-    @Column(name="allergies")
-	private List <String> allergies;
+	private String birthdate;
+	private String medications; 
+	private String allergies;
 	
 	public Medicalrecord() {
 		
 	}
 	
-
-
+public Medicalrecord(String firstName, String lastName, String birthdate, String medications, String allergies) {
+		this.firstName=firstName;
+		this.lastName=lastName;
+		this.birthdate=birthdate;
+		this.medications=medications;
+		this.allergies=allergies;
+	}
+	
 	public void setFirstName(String firstName) {
 		this.firstName=firstName;
 	}
@@ -67,37 +61,37 @@ public class Medicalrecord {
 		return this.lastName;
 	}
 
-	public Date getBirthdate() {
+	public String getBirthdate() {
 		return this.birthdate;
 	}
 
-	public void setBirthdate(Date birthdate) {
+	public void setBirthdate(String birthdate) {
 		this.birthdate = birthdate;
 	}
 	
 
-	public List<String> getMedications() {
+	public String getMedications() {
 		return this.medications;
 	}
 
 
-	public void setMedications(List<String> medications) {
+	public void setMedications(String medications) {
 		this.medications = medications;
 	}
 
 
-	public List<String> getAllergies() {
+	public String getAllergies() {
 		return this.allergies;
 	}
 
 
-	public void setAllergies(List<String> allergies) {
+	public void setAllergies(String allergies) {
 		this.allergies = allergies;
 	}
 	
 	@Override
 	public String toString() {
-		return "{\"persons\": [\n{ \"firstName\":\""+firstName+"\", \"lastName\":\""+lastName+"\", \"birthdate\":\""+birthdate+"\", \"medication\":\""+medications+"\",\"allergies\":\""+allergies+"\"}\n]}";
+		return "{\"medicalrecords\": [\n{ \"firstName\":\""+firstName+"\", \"lastName\":\""+lastName+"\", \"birthdate\":\""+birthdate+"\", \"medication\":\""+medications+"\",\"allergies\":\""+allergies+"\"}\n]}";
 	}
 	
 
