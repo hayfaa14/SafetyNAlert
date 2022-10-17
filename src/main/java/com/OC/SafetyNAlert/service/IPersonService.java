@@ -7,11 +7,9 @@ import com.OC.SafetyNAlert.model.Person;
 
 public interface IPersonService {
 	
-	public List<Person> getPersonList();
+	public List<Person> getPersons();
 	
-	public Iterable<Person> getPersons();
-	
-	public Person addPerson(Person person);
+	public Person savePerson(Person person);
 		
 	public Result updatePerson(Person person, String firstName, String lastName);
 

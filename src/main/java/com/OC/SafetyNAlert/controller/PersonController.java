@@ -30,10 +30,10 @@ public class PersonController {
 	
 	@PostMapping("/person/add")
 	public Person createPerson(@RequestBody Person person) {
-		return personService.addPerson(person);
+		return personService.savePerson(person);
 	}
 	@PutMapping("/person/{firstName}/{lastName}")
-    public Result updatePerson(@PathVariable String firstName,@PathVariable String lastName,@RequestBody Person personDetails) {
+    public Result updatePerson(@RequestBody Person personDetails,@PathVariable String firstName,@PathVariable String lastName) {
 		Result updatedPerson = personService.updatePerson(personDetails, firstName, lastName);
         return updatedPerson;
     }

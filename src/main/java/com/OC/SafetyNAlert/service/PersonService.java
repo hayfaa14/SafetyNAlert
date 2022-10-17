@@ -9,29 +9,26 @@ import org.springframework.stereotype.Service;
 
 import com.OC.SafetyNAlert.Shared.Result;
 import com.OC.SafetyNAlert.model.Person;
-import com.OC.SafetyNAlert.repository.PersonRepository;
+import com.OC.SafetyNAlert.repository.JsonFileRepo;
+
 
 @Service
 public class PersonService implements IPersonService {
 	
 	@Autowired
-	private PersonRepository personRepo;
+	private JsonFileRepo jsonReader;
 	
 	private List<Person> listOfPersons;
 	
-	public PersonService(PersonRepository personRepo) throws IOException{
-		this.listOfPersons=personRepo.findAll();
+	public PersonService(JsonFileRepo personRepo) throws IOException{
+		this.listOfPersons=personRepo.readPerson();
 	}
 
-	public List<Person> getPersonList() {
+	public List<Person> getPersons() {
 		return listOfPersons;
 	}
 	
-	public Iterable<Person> getPersons(){
-		return listOfPersons;
-	}
-
-	public Person addPerson(Person person) {		
+	public Person savePerson(Person person) {		
 		 listOfPersons.add(person);
 		 return person;
 	}
