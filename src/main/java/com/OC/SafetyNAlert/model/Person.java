@@ -36,7 +36,7 @@ public class Person {
 		private String email;
 		
 		@JsonIgnore
-		private int ageChild;
+		private int age;
 		
 		@Transient
 		private Medicalrecord medicalRecord;
@@ -51,10 +51,10 @@ public class Person {
 			Period age =  Period.between(birthDate, today);
 			
 			if (age.getYears()>18) {
-				this.ageChild=age.getYears();
+				this.age=age.getYears();
 				return false;
 			}
-			
+			this.age=age.getYears();
 			return true;
 		}
 		
@@ -63,7 +63,7 @@ public class Person {
 			
 		}
 		
-		public Person(String firstName, String lastName, String address, String phone, String city, String zip, String email) {
+		public Person(String firstName, String lastName, String address, String city, String zip,String phone, String email) {
 			this.firstName=firstName;
 			this.lastName= lastName;
 			this.address= address;
@@ -137,7 +137,7 @@ public class Person {
 		}
 		
 		public int getAge() {
-			return this.ageChild;
+			return this.age;
 		}
 	@Override
 	public String toString() {
