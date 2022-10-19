@@ -65,7 +65,7 @@ public class Firestation {
 
 	
 	public String getAddress() {
-		return address;
+		return this.address;
 	}
 
 	@Override

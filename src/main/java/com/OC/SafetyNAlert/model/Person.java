@@ -1,10 +1,18 @@
 package com.OC.SafetyNAlert.model;
 
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
 
@@ -27,6 +35,30 @@ public class Person {
 		private String zip;
 		private String email;
 		
+		@JsonIgnore
+		private int ageChild;
+		
+		@Transient
+		private Medicalrecord medicalRecord;
+		
+		@Transient
+		@JsonIgnore
+		public Boolean isAChild() {
+			
+			DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+			LocalDate birthDate = LocalDate.parse(this.medicalRecord.getBirthdate(), dateFormat);
+			LocalDate today  = LocalDate.now();
+			Period age =  Period.between(birthDate, today);
+			
+			if (age.getYears()>18) {
+				this.ageChild=age.getYears();
+				return false;
+			}
+			
+			return true;
+		}
+		
+		
 		public Person() {
 			
 		}
@@ -40,7 +72,14 @@ public class Person {
 			this.zip= zip;
 			this.email= email;
 		}
+		public void setMedicalRecord(Medicalrecord record) {
+			this.medicalRecord=record;
+		}
 		
+		@JsonIgnore
+		public Medicalrecord getMedicalRecord() {
+			return this.medicalRecord;
+		}
 		public void setFirstName(String firstName) {
 			this.firstName=firstName;
 		}
@@ -97,12 +136,9 @@ public class Person {
 			this.email=email;
 		}
 		
-		
-
-		
-
-		
-
+		public int getAge() {
+			return this.ageChild;
+		}
 	@Override
 	public String toString() {
 		return "{\"persons\": [\n        { \"firstName\":\""+firstName+"\", \"lastName\":\""+lastName+"\", \"address\":\""+address+"\", \"city\":\""+city+"\", \"zip\":\""+zip+"\", \"phone\":\""+phone+"\", \"email\":\""+email+"\" }\n]}";

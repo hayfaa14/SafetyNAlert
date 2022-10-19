@@ -3,11 +3,13 @@ package com.OC.SafetyNAlert.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.OC.SafetyNAlert.Shared.Result;
 import com.OC.SafetyNAlert.model.Medicalrecord;
 import com.OC.SafetyNAlert.repository.JsonFileRepo;
 
+@Service
 public class MedicalrecordService implements IMedicalrecordService {
 	
 	@Autowired
