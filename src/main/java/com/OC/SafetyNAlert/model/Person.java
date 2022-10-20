@@ -41,6 +41,15 @@ public class Person {
 		@Transient
 		private Medicalrecord medicalRecord;
 		
+		public int  calculateAge(){
+			DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+			LocalDate birthDate = LocalDate.parse(this.medicalRecord.getBirthdate(), dateFormat);
+			LocalDate today  = LocalDate.now();
+			Period agePeriod =  Period.between(birthDate, today);
+			this.age=agePeriod.getYears();
+			return this.age;
+		}
+		
 		@Transient
 		@JsonIgnore
 		public Boolean isAChild() {

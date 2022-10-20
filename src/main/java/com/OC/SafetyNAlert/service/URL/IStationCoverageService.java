@@ -9,7 +9,6 @@ public interface IStationCoverageService {
 	
 	Long getNAdults();
 	Long getNChildren();
-	void setMedicalrecords();
 	PersonsCoveredResult getStationCoverage(String station);
 
 

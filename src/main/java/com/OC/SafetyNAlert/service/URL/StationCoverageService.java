@@ -30,6 +30,7 @@ public class StationCoverageService implements IStationCoverageService{
 	
 	private long nAdults=0;
 	private long nChildren=0;
+
 	
 	public Long getNChildren() {
 		return this.nChildren;
@@ -55,6 +56,7 @@ public class StationCoverageService implements IStationCoverageService{
 		for(int i=0;i<persons.size();i++) {
 			persons.get(i).setMedicalRecord(medRecords.get(i));
 		}
+		
 	}
 	
 	public PersonsCoveredResult getStationCoverage(String station) {
