@@ -18,43 +18,43 @@ import com.OC.SafetyNAlert.model.Firestation;
 import com.OC.SafetyNAlert.model.Medicalrecord;
 import com.OC.SafetyNAlert.model.Person;
 import com.OC.SafetyNAlert.repository.JsonFileRepo;
-import com.OC.SafetyNAlert.service.URL.IStationCoverageService;
-import com.OC.SafetyNAlert.service.URL.StationCoverageService;
+import com.OC.SafetyNAlert.service.URL.FireService;
+import com.OC.SafetyNAlert.service.URL.IFireService;
 
-import DTO.PersonCovered;
-import DTO.PersonsCoveredResult;
+import DTO.FireResult;
+import DTO.PersonInfo;
+import DTO.Resident;
 
 @ExtendWith(MockitoExtension.class)
-public class StationCoverageServiceTest {
+public class FireServiceTest {
+
+	@Autowired
+	private IFireService service;
+	
+	FireResult expectedResult;
 	
 	@Mock
-	private JsonFileRepo jsonReader;
+	JsonFileRepo jsonReader;
 	
-	@Autowired
-	IStationCoverageService service;
-	Long expectedNChildren=(long) 1;
-	Long expectedNAdults=(long) 2;
 	
-	@Autowired
-	PersonsCoveredResult expectedResult;
+	
 	@Test
-	public void testGetStationCoverage() {
-		
+	public void getResidentsByAddressTest() {
 		Map<String,Firestation> firestationMap= new HashMap<>();
 		List<Person> persons= new ArrayList<>();
 		List<Medicalrecord> medRecords = new ArrayList<>();
-		List<PersonCovered> ExpectedPersonsCovered = new ArrayList<>();
-
+		List<Resident> expectedResidents = new ArrayList<>();
+		
+		FireResult testResult;
+		FireResult expectedResult;
+		
 		firestationMap.put("1", new Firestation("1"));
 		firestationMap.get("1").addAddress("street");
-		HashMap<String,Long> nAdultsChildren = new HashMap<>();
-		nAdultsChildren.put("Adults", expectedNAdults);
-		nAdultsChildren.put("Children", expectedNChildren);
 		
 		Person john = new Person("John","Doe","rue", "123456", "London", "0000", "johndoe@gmail.com");
 		Person jane = new Person("Jane","Doe","street", "123456", "London", "0000", "johndoe@gmail.com");
 		Person jack = new Person("Jack","Doe","street", "123456", "London", "0000", "johndoe@gmail.com");
-		Person jason = new Person("Jason","Doe","street", "123456", "London", "0000", "johndoe@gmail.com");
+		Person jason = new Person("Jason","Doe","road", "123456", "London", "0000", "johndoe@gmail.com");
 		
 		medRecords.add(new Medicalrecord(john.getFirstName(),john.getLastName(), "03/13/1993", "iodine", "peanut"));
 		medRecords.add(new Medicalrecord(jane.getFirstName(),jane.getLastName(), "03/14/1994", "iodine", "peanut"));
@@ -66,24 +66,24 @@ public class StationCoverageServiceTest {
 		persons.add(jack);
 		persons.add(jason);
 		
-		ExpectedPersonsCovered.add(new PersonCovered(jane.getFirstName(),jane.getLastName(),jane.getAddress(),jane.getPhone()));
-		ExpectedPersonsCovered.add(new PersonCovered(jack.getFirstName(),jack.getLastName(),jack.getAddress(),jack.getPhone()));
-		ExpectedPersonsCovered.add(new PersonCovered(jason.getFirstName(),jason.getLastName(),jason.getAddress(),jason.getPhone()));
-
-		when(jsonReader.readFirestation()).thenReturn(firestationMap);
+		
+		expectedResidents.add(new Resident(jane.getFirstName(),jane.getLastName(),jane.getAge(),jane.getPhone(),jane.getMedicalRecord()));
+		expectedResidents.add(new Resident(jack.getFirstName(),jack.getLastName(),jack.getAge(),jack.getPhone(),jack.getMedicalRecord()));
+		
+		
 		when(jsonReader.readPerson()).thenReturn(persons);
+		when(jsonReader.readFirestation()).thenReturn(firestationMap);
 		when(jsonReader.readMedicalrecord()).thenReturn(medRecords);
 		
+		service = new FireService(jsonReader);
+		expectedResult = new FireResult("1",expectedResidents);
+		testResult=service.getResidentsByAddress("street");
+		assertEquals(expectedResult.getResidents().toString(),testResult.getResidents().toString());
+		assertEquals(expectedResult.getStation(),testResult.getStation());
+
 		
-		service=new StationCoverageService(jsonReader);
-		PersonsCoveredResult testResult=service.getStationCoverage("1");
-		expectedResult= new PersonsCoveredResult(ExpectedPersonsCovered,nAdultsChildren);
-		
-		//testing the number of children and/or adults covered by the station
-		assertEquals(expectedResult,testResult);
-		//assert comparing two hashmaps failing even though result is the same
+	
 	}
 	
 	
-
 }
