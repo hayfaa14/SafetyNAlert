@@ -28,11 +28,10 @@ public class FloodService implements IFloodService {
 	private List<Person> persons=new ArrayList<>();
 	private Map<String,Firestation> firestationMap=new HashMap<>();
 	private List<Medicalrecord> medRecords = new ArrayList<>();
-
-	
 	private List<String> addressesByStation=new ArrayList<>();
 	private HashMap<String,List<HouseholdMember>> householdMap = new HashMap<>();
 	private List<HouseholdMember> householdMembers=new ArrayList<>();
+	private SharedMethods sm= new SharedMethods();
 	
 	
 	public FloodService(JsonFileRepo jsonReader) {
@@ -50,18 +49,14 @@ public class FloodService implements IFloodService {
 
 	@Override
 	public HashMap<String, List<HouseholdMember>> getHouseholds(String station) {
-		//System.out.println(persons);
-		setMedicalrecords();
-		//System.out.println(persons);
+		sm.setMedicalrecords(persons,medRecords);
+		sm.calculateAge(persons);
 		persons.forEach(p -> householdMembers.add(new HouseholdMember(p.getFirstName(),p.getLastName(),p.getPhone(),p.getAge(),p.getMedicalRecord(),p.getAddress())));
 
 		addressesByStation.addAll(firestationMap.get(station).getAddresses());
 		addressesByStation.forEach(ad -> 					
 			householdMap.put(ad, householdMembers.stream().filter(p -> p.getAddress().equals(ad)).collect(Collectors.toList())));
-			//System.out.println(householdMap);
-			//System.out.println(householdMap);
-			
-		// TODO Auto-generated method stub
+
 		return householdMap;
 	}
 

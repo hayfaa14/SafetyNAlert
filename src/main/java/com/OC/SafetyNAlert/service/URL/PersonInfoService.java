@@ -19,6 +19,7 @@ public class PersonInfoService implements IPersonInfoService{
 	private List<Medicalrecord> medRecords= new ArrayList<>();
 	private List<PersonInfo> personsInfo = new ArrayList<>();
 	private List<Person> personsMatch = new ArrayList<>();
+	private SharedMethods sm=new SharedMethods();
 	
 	public PersonInfoService(JsonFileRepo jsonReader) {
 		this.persons=jsonReader.readPerson();
@@ -26,17 +27,10 @@ public class PersonInfoService implements IPersonInfoService{
 
 	}
 	
-	private void setMedicalRecords() {
-		for(int i=0;i<persons.size();i++) {
-			persons.get(i).setMedicalRecord(medRecords.get(i));
-		}
-	}
-
 	@Override
 	public List<PersonInfo> getPersonInfo(String firstName, String lastName) {
-		// TODO Auto-generated method stub
-		setMedicalRecords();
-		//System.out.println(persons);
+		sm.setMedicalrecords(persons,medRecords);
+		sm.calculateAge(persons);
 		personsMatch.addAll(persons.stream().filter(p ->  p.getFirstName().equals(firstName)).filter(p -> p.getLastName().equals(lastName)).collect(Collectors.toList()));
 		personsMatch.forEach(p -> personsInfo.add(new PersonInfo(p.getFirstName(),p.getLastName(),p.getAddress(),p.getAge(),p.getEmail(),p.getMedicalRecord())));
 		

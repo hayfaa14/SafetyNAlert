@@ -38,7 +38,6 @@ public class JsonReader implements JsonFileRepo{
 		            persons.add(new Person(person.get("firstName").toString(), person.get("lastName").toString(), person.get("address").toString(), person.get("city").toString(),
 		                    person.get("zip").toString(), person.get("phone").toString(), person.get("email").toString()));
 		        }
-		        System.out.print(persons);
 		        return persons;
 		    }
 		    

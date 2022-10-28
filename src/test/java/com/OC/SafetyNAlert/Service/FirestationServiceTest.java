@@ -32,7 +32,10 @@ public class FirestationServiceTest {
 	void setUp() throws IOException {
 	Firestation firestation = new Firestation("1");
 	firestation.addAddress("5 rue du Boulevard");
+	Firestation firestation2 = new Firestation("3");
+	firestation.addAddress("51 cours tolstoi");
 	firestationMap.put("1", firestation);
+	firestationMap.put("3", firestation2);
 	when(jsonReader.readFirestation()).thenReturn(firestationMap);
 	firestationService=new FirestationService(jsonReader);
 	}
@@ -46,7 +49,7 @@ public class FirestationServiceTest {
 	
 	@Test
 	public void testSaveFirestation() {
-		Firestation newFirestation=new Firestation("2");
+		Firestation newFirestation=new Firestation("3");
 		newFirestation.addAddress("79 avenue de la Gloire");
 		firestationMap.put(newFirestation.getStation(), newFirestation);
 		assertEquals(newFirestation,firestationService.saveFirestation(newFirestation));
@@ -60,18 +63,23 @@ public class FirestationServiceTest {
 		
 	}
 	
+	
 	@Test
 	public void testDeleteFirestationByStation() {
-		Result testResult=firestationService.deleteFirestationByStation("2");
+		Result testResult=firestationService.deleteFirestationByStation("1");
 		assertEquals(Result.success,testResult);
 	}
+	
+	
 	
 	@Test
 	public void testUpdateFirestationOfAnAddress() {
 		Firestation firestationUpdate= new Firestation("3");
-		firestationUpdate.setAddress("79 avenue de la Gloire");
-		String stationToUpdate = "2";
-		Result testResult=firestationService.updateFiresationOfAnAddress(firestationUpdate, stationToUpdate);
+		firestationUpdate.setStation("3");
+		firestationUpdate.setAddress("51 cours tolstoi");
+		
+		Result testResult=firestationService.updateFiresationOfAnAddress(firestationUpdate, "3","52 cours tolstoi");
 		assertEquals(Result.success,testResult);
 	}	
+	
 }

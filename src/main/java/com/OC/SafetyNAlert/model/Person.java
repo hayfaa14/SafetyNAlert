@@ -67,9 +67,8 @@ public class Person {
 			return true;
 		}
 		
-		
 		public Person() {
-			
+		
 		}
 		
 		public Person(String firstName, String lastName, String address, String city, String zip,String phone, String email) {
@@ -147,6 +146,10 @@ public class Person {
 		
 		public int getAge() {
 			return this.age;
+		}
+		
+		public void setAge(int age) {
+			this.age=age;
 		}
 	@Override
 	public String toString() {

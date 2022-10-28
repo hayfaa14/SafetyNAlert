@@ -3,9 +3,7 @@ package DTO;
 public class Adult {
 	private String firstName;
 	private String lastName;
-	private int age;
 	
-
 	public Adult(String firstName, String lastName) {
 		super();
 		this.firstName = firstName;

@@ -1,8 +1,7 @@
 package com.OC.SafetyNAlert.Service.URL;
 
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertIterableEquals;
 import static org.mockito.Mockito.when;
 
 import java.text.ParseException;
@@ -40,9 +39,6 @@ public class ChildAlertServiceTest {
 	@Test
 	public void testGetChildAlert() throws ParseException {
 		
-		
-
-		
 		Person john = new Person("John","Doe","street", "123456", "London", "0000", "johndoe@gmail.com");
 		Person jane = new Person("Jane","Doe","street", "123456", "London", "0000", "johndoe@gmail.com");
 		Person jack = new Person("Jack","Doe","street", "123456", "London", "0000", "johndoe@gmail.com");
@@ -54,21 +50,25 @@ public class ChildAlertServiceTest {
 		familymembers.add(new Adult(john.getFirstName(),john.getLastName()));
 		familymembers.add(new Adult(jane.getFirstName(),jane.getLastName()));
 		
+		medRecords.add(new Medicalrecord(john.getFirstName(),john.getLastName(), "03/13/1993", "iodine", "peanut"));
+		medRecords.add(new Medicalrecord(jane.getFirstName(),jane.getLastName(), "03/14/1994", "iodine", "peanut"));
+		medRecords.add(new Medicalrecord(jack.getFirstName(),jack.getLastName(), "09/16/2018", "iodine", "peanut"));
 		
-		medRecords.add(new Medicalrecord(john.getFirstName(),john.getLastName(), "13/03/1993", "iodine", "peanut"));
-		medRecords.add(new Medicalrecord(jane.getFirstName(),jane.getLastName(), "14/03/1994", "iodine", "peanut"));
-		medRecords.add(new Medicalrecord(jack.getFirstName(),jack.getLastName(), "16/09/2018", "iodine", "peanut"));
+		john.setMedicalRecord(medRecords.get(0));
+		jane.setMedicalRecord(medRecords.get(1));
+		jack.setMedicalRecord(medRecords.get(2));
 		
-		System.out.println(jsonReader.readPerson());
+		john.calculateAge();
+		jane.calculateAge();
+		jack.calculateAge();
+		
 		when(jsonReader.readPerson()).thenReturn(persons);
 		when(jsonReader.readMedicalrecord()).thenReturn(medRecords);
 		List<Child> expectedChildrenByAddress = new ArrayList<>();
 		expectedChildrenByAddress.add(new Child(jack.getFirstName(),jack.getLastName(),jack.getAge(),familymembers));
-		//System.out.println(expectedChildrenByAddress);
-		//System.out.println(childService.getChildAlert("street"));
 		childService = new ChildAlertService(jsonReader);
 		List<Child> testResult=childService.getChildAlert("street");
-		assertEquals(expectedChildrenByAddress,childService.getChildAlert("street"));
+		assertEquals(expectedChildrenByAddress.toString(),testResult.toString());
 
 		
 		

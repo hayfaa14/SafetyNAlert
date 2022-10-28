@@ -11,5 +11,5 @@ public interface IFirestationService {
 	 Firestation saveFirestation(Firestation firestation);
 	 Result deleteFirestationByAddress(String address);
 	 Result deleteFirestationByStation(String station);
-	 Result updateFiresationOfAnAddress(Firestation firestation, String station);
+	 Result updateFiresationOfAnAddress(Firestation firestation, String station, String address);
 }

@@ -61,6 +61,16 @@ public class FireServiceTest {
 		medRecords.add(new Medicalrecord(jack.getFirstName(),jack.getLastName(), "09/16/2018", "iodine", "peanut"));
 		medRecords.add(new Medicalrecord(jason.getFirstName(),jason.getLastName(), "05/19/1999", "iodine", "peanut"));
 		
+		john.setMedicalRecord(medRecords.get(0));
+		jane.setMedicalRecord(medRecords.get(1));
+		jack.setMedicalRecord(medRecords.get(2));
+		jason.setMedicalRecord(medRecords.get(3));
+		
+		john.calculateAge();
+		jane.calculateAge();
+		jack.calculateAge();
+		jason.calculateAge();
+		
 		persons.add(john);
 		persons.add(jane);
 		persons.add(jack);

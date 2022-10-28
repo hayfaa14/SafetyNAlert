@@ -28,6 +28,7 @@ public class FireService implements IFireService {
 	private List<Resident> residents =  new ArrayList<>();
 	private List<Person> personsByAddress=new ArrayList<>();
 	private String station;
+	private SharedMethods sm=new SharedMethods();
 
 	private List<Medicalrecord> medRecords=new ArrayList<>();
 	
@@ -38,14 +39,9 @@ public class FireService implements IFireService {
 		
 	}
 
-	public void setMedicalrecords() {
-		for(int i=0;i<persons.size();i++) {
-			persons.get(i).setMedicalRecord(medRecords.get(i));
-		}
-		
-	}
 	public FireResult getResidentsByAddress(String address) {
-		setMedicalrecords();
+		sm.setMedicalrecords(persons,medRecords);
+		sm.calculateAge(persons);
 		personsByAddress.addAll(persons.stream().filter(p -> p.getAddress().matches(address)).collect(Collectors.toList()));
 		personsByAddress.forEach(p -> residents.add(new Resident(p.getFirstName(),p.getLastName(),p.getAge(),p.getPhone(),p.getMedicalRecord())));
 		System.out.println(residents);

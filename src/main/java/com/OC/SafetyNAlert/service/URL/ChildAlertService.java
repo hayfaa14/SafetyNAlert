@@ -26,22 +26,25 @@ public class ChildAlertService implements IChildAlertService{
 	private List<Medicalrecord> medRecords = new ArrayList<>();
 	private List<Child> childrenByAddress= new ArrayList<>();
 	private List<Adult> familyMembersByAddress=new ArrayList<>();
+	private SharedMethods sm = new SharedMethods();
 	
 	public  ChildAlertService(JsonFileRepo reader) {
 		this.persons=reader.readPerson();
 		this.medRecords=reader.readMedicalrecord();
 	}
-	
+
+	/*
 	private void setMedicalrecords() {
 		for(int i=0;i<persons.size();i++) {
 			persons.get(i).setMedicalRecord(medRecords.get(i));
 			System.out.println("inside set medical records ");
 		}
 	}
-	
+	*/
 
 	public List<Child> getChildAlert(String address) throws ParseException {
-		setMedicalrecords();
+		sm.setMedicalrecords(persons,medRecords);
+		sm.calculateAge(persons);
 		
 		children=persons.stream().filter(p -> p.getAddress().equals(address)).collect(Collectors.toList());
 		children=children.stream().filter(p -> p.isAChild()).collect(Collectors.toList());

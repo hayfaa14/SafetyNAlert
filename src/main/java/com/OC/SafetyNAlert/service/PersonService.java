@@ -37,7 +37,7 @@ public class PersonService implements IPersonService {
 
 	public Result updatePerson(Person person, String firstName, String lastName) {
 		for(Person updatePerson:listOfPersons) {
-			if(person.getFirstName()==firstName && person.getLastName()==lastName) {
+			if(person.getFirstName().equals(firstName) && person.getLastName().equals(lastName)) {
 				int indexOfPersonToUpdate=listOfPersons.indexOf(updatePerson);
 				listOfPersons.set(indexOfPersonToUpdate, person);
 				return Result.success;

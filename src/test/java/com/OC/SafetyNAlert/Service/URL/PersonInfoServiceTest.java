@@ -51,11 +51,26 @@ public class PersonInfoServiceTest {
 		medRecords.add(new Medicalrecord(jason.getFirstName(),jason.getLastName(), "05/19/1999", "iodine", "peanut"));
 		medRecords.add(new Medicalrecord(jason2.getFirstName(),jason2.getLastName(), "07/11/1991", "hydroxiclhoroquine", "prawn"));
 		
+		john.setMedicalRecord(medRecords.get(0));
+		jane.setMedicalRecord(medRecords.get(1));
+		jack.setMedicalRecord(medRecords.get(2));
+		jason.setMedicalRecord(medRecords.get(3));
+		jason2.setMedicalRecord(medRecords.get(4));
+		
+		john.calculateAge();
+		jane.calculateAge();
+		jack.calculateAge();
+		jason.calculateAge();
+		jason2.calculateAge();
+		
+		
 		persons.add(john);
 		persons.add(jane);
 		persons.add(jack);
 		persons.add(jason);
 		persons.add(jason2);
+		
+		
 		
 		expectedPersonsInfo.add(new PersonInfo(jason.getFirstName(),jason.getLastName(),jason.getAddress(),jason.getAge(),
 				jason.getEmail(),jason.getMedicalRecord()));

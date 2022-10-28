@@ -19,7 +19,7 @@ public class PersonInfoController {
 	IPersonInfoService service;
 	
 	@GetMapping("personInfo")
-	public List<PersonInfo> getPersonInfo(@RequestParam String firstName, String lastName){
+	public List<PersonInfo> getPersonInfo(@RequestParam String firstName,@RequestParam String lastName){
 		return service.getPersonInfo(firstName,lastName);
 	}
 

@@ -47,10 +47,10 @@ public class FirestationService implements IFirestationService {
 		return Result.success;
 	}
 	
-	public Result updateFiresationOfAnAddress(Firestation firestation, String station) {
+	public Result updateFiresationOfAnAddress(Firestation firestation, String station, String address) {
 		for(Firestation firestations:addressesMap.values()) {
-			if(firestations.equals(firestation.getStation())) {
-				addressesMap.remove(station, firestation.getAddress());
+			if(firestations.getStation().equals(station)) {
+				addressesMap.remove(station, address);
 				addressesMap.put(firestation.getStation(), firestation);
 				return Result.success;
 			}
@@ -59,5 +59,7 @@ public class FirestationService implements IFirestationService {
 		return Result.failure;
 		
 	}
+
+	
 		
 }

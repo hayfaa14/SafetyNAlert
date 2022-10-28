@@ -24,11 +24,8 @@ import lombok.Data;
 @Table
 public class Firestation {
 	
-	
 	public Firestation() {}
 	
-
-
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;

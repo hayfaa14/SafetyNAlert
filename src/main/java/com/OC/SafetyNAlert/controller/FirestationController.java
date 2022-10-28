@@ -42,8 +42,8 @@ public class FirestationController {
 	}
 	
 	@PutMapping("/firestation/{station}")
-	public Result updtateFirestation(@PathVariable String station, @RequestBody Firestation firestation ) {
-		return firestationService.updateFiresationOfAnAddress(firestation, station);
+	public Result updtateFirestation( @RequestBody Firestation firestation,@PathVariable String station,@PathVariable String address) {
+		return firestationService.updateFiresationOfAnAddress(firestation, station,address);
 	}
 	
 	@Transactional
