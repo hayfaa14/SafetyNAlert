@@ -9,6 +9,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.OC.SafetyNAlert.service.URL.IPhoneAlertService;
 
+/**
+ * This endpoint returns the phone numbers of every person covered by  a station.
+ */
+
 
 
 @RestController

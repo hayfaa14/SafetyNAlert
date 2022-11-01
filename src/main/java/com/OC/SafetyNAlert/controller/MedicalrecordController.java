@@ -29,7 +29,6 @@ public class MedicalrecordController {
 		return medicalService.getMedicalRecords();
 	}
 	
-	
 	@PostMapping("/medicalrecord")
 	public Medicalrecord createMedicalRecord(@RequestBody Medicalrecord medicalRecord) {
 		return medicalService.addMedicalRecord(medicalRecord);

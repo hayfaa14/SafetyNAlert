@@ -16,6 +16,11 @@ import DTO.Child;
 @RestController
 public class ChildAlertController {
 	
+	/**
+	 * This endpoint/url returns a list of children, if any, residing at a given address.
+	 * The adults at the same address are then also mentioned, onnnly if there are children.
+	 */
+	
 	@Autowired
 	private IChildAlertService service;
 	

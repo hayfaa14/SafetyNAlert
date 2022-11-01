@@ -12,7 +12,10 @@ import com.OC.SafetyNAlert.service.URL.IFloodService;
 
 import DTO.Household;
 import DTO.HouseholdMember;
-
+/**
+ * This endpont wants to return the households covered by a certai nstation. 
+ * Household details contain: the address and details about the different members. 
+ */
 @RestController
 public class FloodController {
 	

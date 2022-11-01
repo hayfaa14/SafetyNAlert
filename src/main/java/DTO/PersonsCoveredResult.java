@@ -5,6 +5,7 @@ import java.util.List;
 
 public class PersonsCoveredResult {
 	
+
 	private List<PersonCovered> personsCovered;
 	private HashMap<String,Long> nAdultsChildren;
 	

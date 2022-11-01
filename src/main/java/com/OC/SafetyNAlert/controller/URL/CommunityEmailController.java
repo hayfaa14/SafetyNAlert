@@ -12,6 +12,10 @@ import com.OC.SafetyNAlert.service.URL.ICommunityEmailService;
 @RestController
 public class CommunityEmailController {
 	
+	/**
+	 * This endpoint is used to display the email address of each resident of a city
+	 */
+	
 	@Autowired
 	private ICommunityEmailService service;
 	

@@ -15,6 +15,14 @@ import DTO.PersonInfo;
 @RestController
 public class PersonInfoController {
 	
+	/**
+	 * This endpoint is used to display details abouut a person, when searched by a combination of their first name and last name.
+	 * The displayed information are: 
+	 * 			address
+	 * 			age
+	 * 			medical records: medication and allergies
+	 */
+	
 	@Autowired
 	IPersonInfoService service;
 	
