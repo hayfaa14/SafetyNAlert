@@ -42,7 +42,7 @@ public class MedicalrecordController {
 	@Transactional
 	@DeleteMapping("medicalrecord/delete/{firstName}/{lastName}")
 	public Result deleteFirestationStation(@PathVariable String firstName,@PathVariable String lastName){
-		return medicalService.deleteMedicalRecord(firstName, lastName);
+		 return medicalService.deleteMedicalRecord(firstName, lastName);
 	}
 
 }

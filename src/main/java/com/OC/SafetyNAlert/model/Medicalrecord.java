@@ -1,21 +1,13 @@
 package com.OC.SafetyNAlert.model;
 
-import java.util.Date;
-import java.util.List;
 
-import javax.persistence.CollectionTable;
-import javax.persistence.Column;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import lombok.Data;
+import lombok.Generated;
 @Data
 @Entity
 @Table(name="medicalrecords")
@@ -44,47 +36,47 @@ public Medicalrecord(String firstName, String lastName, String birthdate, String
 		this.medications=medications;
 		this.allergies=allergies;
 	}
-	
+	@Generated
 	public void setFirstName(String firstName) {
 		this.firstName=firstName;
 	}
-
+	@Generated
 	public String getFirstName() {
 		return this.firstName;
 	}
-
+	@Generated
 	public void setLastName(String lastName) {
 		this.lastName=lastName;
 	}
-
+	@Generated
 	public String getLastname() {
 		return this.lastName;
 	}
-
+	@Generated
 	public String getBirthdate() {
 		return this.birthdate;
 	}
-
+	@Generated
 	public void setBirthdate(String birthdate) {
 		this.birthdate = birthdate;
 	}
 	
-
+	@Generated
 	public String getMedications() {
 		return this.medications;
 	}
 
-
+	@Generated
 	public void setMedications(String medications) {
 		this.medications = medications;
 	}
 
-
+	@Generated
 	public String getAllergies() {
 		return this.allergies;
 	}
 
-
+	@Generated
 	public void setAllergies(String allergies) {
 		this.allergies = allergies;
 	}

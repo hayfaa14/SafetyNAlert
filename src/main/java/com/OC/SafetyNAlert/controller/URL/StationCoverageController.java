@@ -20,7 +20,7 @@ public class StationCoverageController {
 	@Autowired
 	private IStationCoverageService service;
 
-	@GetMapping("firestation")
+	@GetMapping("/firestation")
 	public PersonsCoveredResult getStationCoverage(@RequestParam String station) {
 		return service.getStationCoverage(station);
 	}

@@ -46,17 +46,16 @@ public class MedicalrecordServiceTest {
 	public void saveMedicalRecordTest() {
 		Medicalrecord newMedRecord = new Medicalrecord("Justin","Doe","14/03/1994","cortison","cat");
 		Medicalrecord testResult=medService.addMedicalRecord(newMedRecord);
-		System.out.println(medicalRecords);
+		//System.out.println(medicalRecords);
 		assertEquals(newMedRecord,testResult);
 	}
 	
 	@Test
 	public void deleteMedicalRecordTest() {
 		Result testResult=medService.deleteMedicalRecord("Justin", "Doe");
-		System.out.println(medicalRecords);
 		int expectedSize=1;
-		//assertEquals(Result.success,testResult); this is not working 
 		assertEquals(expectedSize,medicalRecords.size());
+
 	
 	}
 	

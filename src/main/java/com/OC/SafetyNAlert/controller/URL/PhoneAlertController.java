@@ -20,7 +20,7 @@ public class PhoneAlertController {
 	@Autowired
 	IPhoneAlertService phoneService;
 	
-	@GetMapping("phone")
+	@GetMapping("/phone")
 	public List<String> getPhoneAlert(@RequestParam String Station){
 		return phoneService.getPhoneNumbersByStation(Station);
 	}

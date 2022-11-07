@@ -15,6 +15,7 @@ import javax.persistence.Transient;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
+import lombok.Generated;
 
 
 
@@ -80,6 +81,7 @@ public class Person {
 			this.zip= zip;
 			this.email= email;
 		}
+		
 		public void setMedicalRecord(Medicalrecord record) {
 			this.medicalRecord=record;
 		}
@@ -88,58 +90,60 @@ public class Person {
 		public Medicalrecord getMedicalRecord() {
 			return this.medicalRecord;
 		}
+		@Generated
 		public void setFirstName(String firstName) {
 			this.firstName=firstName;
 		}
-		
+		@Generated
 		public String getFirstName() {
 			return this.firstName;
 		}
-		
+		@Generated
 		public void setLastName(String lastName) {
 			this.lastName=lastName;
 		}
-		
+		@Generated
 		public String getLastName() {
 			return this.lastName;
 		}
-		
+		@Generated
 		public void setAddress(String address) {
 			this.address=address;
 		}
-		
+		@Generated
 		public String getAddress() {
 			return this.address;
 		}
-		
+		@Generated
 		public void setPhone(String phone) {
 			this.phone=phone;
 		}
-		
+		@Generated
 		public String getPhone() {
 			return this.phone;
 		}
-		
+		@Generated
 		public void setCity(String city) {
 			this.city=city;
 		}
-		
+		@Generated
 		public String getCity() {
 			return this.city;
 		}
-		
+		@Generated
 		public void setZip(String zip) {
 			this.zip=zip;
 		}
-		
+		@Generated
 		public String getZip() {
 			return this.zip;
 		}
-		
+		@Generated
 		public String getEmail() {
 			return this.email;
 		}
 		
+		@Generated
 		public void setEmail(String email) {
 			this.email=email;
 		}

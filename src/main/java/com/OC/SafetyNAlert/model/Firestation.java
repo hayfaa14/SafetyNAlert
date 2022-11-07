@@ -1,6 +1,5 @@
 package com.OC.SafetyNAlert.model;
 
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -11,11 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
-
-import com.jsoniter.annotation.JsonProperty;
-import com.jsoniter.fuzzy.MaybeStringIntDecoder;
-
 import lombok.Data;
+import lombok.Generated;
 
 
 
@@ -48,19 +44,20 @@ public class Firestation {
 	public Set<String> getAddresses(){
 		return addresses.stream().collect(Collectors.toSet());
 	}
-	
+	@Generated
 	public String getStation() {
 		return this.station;
 	}
+	@Generated
 	public void setStation(String station) {
 		 this.station=station;
 	}
-	
+	@Generated
 	public void setAddress(String address) {
 		 this.address=address;
 	}
 
-	
+	@Generated
 	public String getAddress() {
 		return this.address;
 	}

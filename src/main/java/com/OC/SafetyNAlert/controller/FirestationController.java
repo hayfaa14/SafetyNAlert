@@ -35,21 +35,24 @@ public class FirestationController {
 		
 	}
 	
-	@Transactional
-	@DeleteMapping("firestation/delete/{address}")
-	public Result deleteFirestationByAddress(@PathVariable String address) {
-		return firestationService.deleteFirestationByAddress(address);
-	}
+
 	
 	@PutMapping("/firestation/{station}")
-	public Result updtateFirestation( @RequestBody Firestation firestation,@PathVariable String station,@PathVariable String address) {
-		return firestationService.updateFiresationOfAnAddress(firestation, station,address);
+	public Result updtateFirestation( @RequestBody Firestation firestation,@PathVariable String station) {
+		return firestationService.updateFiresationOfAnAddress(firestation, station,firestation.getAddress());
 	}
 	
 	@Transactional
-	@DeleteMapping("firestation/delete/{station}")
-	public Result deleteFirestationStation(@PathVariable("station")String station){
-		return firestationService.deleteFirestationByStation(station);
+	@DeleteMapping("firestation/delete/{stationOrAddress}")
+	public Result deleteFirestationByStationOrAddress(@PathVariable("stationOrAddress")String stationOrAddress){
+		if(stationOrAddress.length()>1) {
+			return firestationService.deleteFirestationByStation(stationOrAddress);
+		}
+		else
+		{
+			return firestationService.deleteFirestationByAddress(stationOrAddress);
+		}
+		
 	}
 	
 
